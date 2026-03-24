@@ -68,6 +68,12 @@ export default function Hero() {
         body: JSON.stringify({ email, source: 'hero' }),
       })
       setSubmitted(true)
+      // Fire GA4 conversion event
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'manual_event_SUBMIT_LEAD_FORM', {
+          form_name: 'join_waitlist'
+        })
+      }
     } catch { /* silent */ }
   }
 
