@@ -23,6 +23,10 @@ export default function ValidationCTA() {
         body: JSON.stringify({ ...form, source: 'validation_cta' }),
       })
       if (!res.ok) throw new Error('Submit failed')
+      // Fire GA4 conversion event
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'manual_event_SUBMIT_LEAD_FORM')
+      }
       setSubmitted(true)
     } catch { /* silent */ }
   }
