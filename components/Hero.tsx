@@ -87,7 +87,7 @@ export default function Hero() {
               onClick={scrollToWaitlist}
               className="px-8 py-4 bg-teal-600 hover:bg-teal-500 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-teal-600/20"
             >
-              Apply for Access
+              Learn More & Get In Touch
             </button>
           </div>
           <p className="text-slate-500 text-sm">Limited availability • No spam • Personal onboarding</p>
