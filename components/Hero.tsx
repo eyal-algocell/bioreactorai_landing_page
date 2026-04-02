@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useState } from 'react'
 import BioreactorChart from './BioreactorChart'
 
 const scenarios = [
@@ -31,8 +31,6 @@ const scenarios = [
 ]
 
 export default function Hero() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [visible, setVisible] = useState(true)
 
@@ -58,23 +56,8 @@ export default function Hero() {
     }, 600)
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email) return
-    try {
-      await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'hero' }),
-      })
-      setSubmitted(true)
-      // Fire GA4 conversion event
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'manual_event_SUBMIT_LEAD_FORM', {
-          form_name: 'join_waitlist'
-        })
-      }
-    } catch { /* silent */ }
+  const scrollToWaitlist = () => {
+    document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const scenario = scenarios[activeIndex]
@@ -99,28 +82,14 @@ export default function Hero() {
             Ask questions in plain language. Get insights in real-time.
           </p>
 
-          {submitted ? (
-            <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-6 py-4 text-emerald-400 font-medium mb-4">
-              You&apos;re on the waitlist. We&apos;ll reach out personally.
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 mb-4">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@company.com"
-                required
-                className="flex-1 px-4 py-4 rounded-lg bg-white/5 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-colors"
-              />
-              <button
-                type="submit"
-                className="px-8 py-4 bg-teal-600 hover:bg-teal-500 text-white font-semibold rounded-lg transition-colors whitespace-nowrap shadow-lg shadow-teal-600/20"
-              >
-                Join Waitlist
-              </button>
-            </form>
-          )}
+          <div className="mb-4">
+            <button
+              onClick={scrollToWaitlist}
+              className="px-8 py-4 bg-teal-600 hover:bg-teal-500 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-teal-600/20"
+            >
+              Apply for Access
+            </button>
+          </div>
           <p className="text-slate-500 text-sm">Limited availability • No spam • Personal onboarding</p>
         </div>
 
