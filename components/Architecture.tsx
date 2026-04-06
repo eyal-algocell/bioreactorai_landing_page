@@ -7,6 +7,8 @@ const layers = [
     color: 'from-emerald-500/20 to-emerald-500/5',
     borderColor: 'border-emerald-500/30',
     iconColor: 'text-emerald-400',
+    bulletColor: 'bg-emerald-400',
+    bulletSize: 'w-1.5 h-1.5',
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
@@ -20,6 +22,8 @@ const layers = [
     color: 'from-amber-500/20 to-amber-500/5',
     borderColor: 'border-amber-500/30',
     iconColor: 'text-amber-400',
+    bulletColor: 'bg-orange-600',
+    bulletSize: 'w-1.5 h-1.5',
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
@@ -33,6 +37,8 @@ const layers = [
     color: 'from-blue-500/20 to-blue-500/5',
     borderColor: 'border-blue-500/30',
     iconColor: 'text-blue-400',
+    bulletColor: 'bg-violet-600',
+    bulletSize: 'w-1.5 h-1.5',
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
@@ -46,6 +52,8 @@ const layers = [
     color: 'from-teal-500/20 to-teal-500/5',
     borderColor: 'border-teal-500/30',
     iconColor: 'text-teal-400',
+    bulletColor: 'bg-teal-400',
+    bulletSize: 'w-1.5 h-1.5',
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
@@ -72,13 +80,15 @@ export default function Architecture() {
           {layers.map((layer, i) => (
             <div key={i} className="relative">
               <div className={`bg-gradient-to-b ${layer.color} border ${layer.borderColor} rounded-2xl p-6 h-full`}>
-                <div className={`${layer.iconColor} mb-4`}>{layer.icon}</div>
-                <h3 className="text-slate-900 font-semibold text-lg mb-1">{layer.label}</h3>
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <div className={`${layer.iconColor} flex-shrink-0`}>{layer.icon}</div>
+                  <h3 className="text-slate-900 font-semibold text-lg">{layer.label}</h3>
+                </div>
                 <p className="text-slate-600 text-sm mb-4">{layer.sublabel}</p>
                 <ul className="space-y-1.5">
                   {layer.details.map((d, j) => (
                     <li key={j} className="text-slate-700 text-sm flex items-start gap-2">
-                      <span className={`mt-1.5 w-1 h-1 rounded-full ${layer.iconColor.replace('text-', 'bg-')} flex-shrink-0`} />
+                      <span className={`mt-1 ${layer.bulletSize} rounded-full ${layer.bulletColor} flex-shrink-0`} />
                       {d}
                     </li>
                   ))}
