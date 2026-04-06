@@ -73,11 +73,11 @@ export default function Architecture() {
             <div key={i} className="relative">
               <div className={`bg-gradient-to-b ${layer.color} border ${layer.borderColor} rounded-2xl p-6 h-full`}>
                 <div className={`${layer.iconColor} mb-4`}>{layer.icon}</div>
-                <h3 className="text-white font-semibold text-lg mb-1">{layer.label}</h3>
-                <p className="text-slate-400 text-sm mb-4">{layer.sublabel}</p>
+                <h3 className="text-slate-900 font-semibold text-lg mb-1">{layer.label}</h3>
+                <p className="text-slate-600 text-sm mb-4">{layer.sublabel}</p>
                 <ul className="space-y-1.5">
                   {layer.details.map((d, j) => (
-                    <li key={j} className="text-slate-300 text-sm flex items-start gap-2">
+                    <li key={j} className="text-slate-700 text-sm flex items-start gap-2">
                       <span className={`mt-1.5 w-1 h-1 rounded-full ${layer.iconColor.replace('text-', 'bg-')} flex-shrink-0`} />
                       {d}
                     </li>
